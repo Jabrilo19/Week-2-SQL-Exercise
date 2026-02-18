@@ -1,20 +1,21 @@
 # Week-2-SQL-Exercise
-# 1 and 2
+# 1 Install mariadb database on your machine.
+# 2 Create a database with your lastname.
 MariaDB [(none)]> create database foy;
 Query OK, 1 row affected (0.002 sec)
 MariaDB [(none)]> use foy;
 Database changed
 
-# 3
+# 3 In this database, create a table called vets, with the following fields: lname varchar(100), fname varchar(100), town varchar(100), state varchar(20)
 MariaDB [foy]> create table vets (lname varchar(100), fname varchar(100), town varchar(100), state varchar(20));
 Query OK, 0 rows affected (0.008 sec)
 
-# 4
+# 4 Load data given in the CSV file VV.csv into this table. The file contains last name, first name, town and state of Vietnam veterans known to have been killed in action during the Vietnam war. Use: LOAD DATA LOCAL INFILE '/home/easwaran/PPC/VV.csv' into table vets FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
 MariaDB [foy]> LOAD DATA LOCAL INFILE 'C:\\Users\\foyje\\Downloads\\VV.csv' INTO TABLE vets FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
 Query OK, 58253 rows affected (0.159 sec)
 Records: 58253  Deleted: 0  Skipped: 0  Warnings: 0
 
-# 5(A)
+# 5(A) How many veterans are listed in the file?
 MariaDB [foy]>  select count(*) from vets;
 +----------+
 | count(*) |
@@ -23,7 +24,7 @@ MariaDB [foy]>  select count(*) from vets;
 +----------+
 1 row in set (0.011 sec)
 
-# 5(B)
+# 5(B) How many of them are from DAYTON?
 MariaDB [foy]> select count(*) from vets where state = 'DAYTON';
 +----------+
 | count(*) |
@@ -32,7 +33,7 @@ MariaDB [foy]> select count(*) from vets where state = 'DAYTON';
 +----------+
 1 row in set (0.012 sec)
 
-# 5(C)
+# 5(C) List all veterans with last name ‘HARRIS’
 MariaDB [foy]> select fname from vets where lname = 'HARRIS';
 +----------------------+
 | fname                |
